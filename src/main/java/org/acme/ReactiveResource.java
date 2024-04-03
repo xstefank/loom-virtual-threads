@@ -28,9 +28,6 @@ public class ReactiveResource {
         System.out.println("Calling example API...");
 
         return exampleClient.reactiveGet()
-            .onItem().transformToUni((s, uniEmitter) -> {
-                concurrencyTracker.decAsync();
-                uniEmitter.complete(s.toUpperCase());
-            });
+            .map(String::toUpperCase);
     }
 }
