@@ -27,7 +27,7 @@ public class VirtualThreadResource {
     public String hello() {
         concurrencyTracker.inc();
         try {
-            System.out.println("Calling example API...");
+            System.out.println("Calling example API on " + Thread.currentThread().getName());
 
             return exampleClient.blockingGet().toUpperCase();
         } finally {

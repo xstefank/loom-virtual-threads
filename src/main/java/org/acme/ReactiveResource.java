@@ -25,7 +25,7 @@ public class ReactiveResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Uni<String> hello() {
         concurrencyTracker.incAsync();
-        System.out.println("Calling example API...");
+        System.out.println("Calling example API on " + Thread.currentThread().getName());
 
         return exampleClient.reactiveGet()
             .map(String::toUpperCase);
