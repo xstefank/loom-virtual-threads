@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png" href="favicon.ico">
+
+    <script async src="/_static/es-module-shims/dist/es-module-shims.js"></script>
+    <script src="/_importmap/dynamic-importmap.js"></script>
+
+    <script type="module">
+        import 'icons/font-awesome.js';
+        import 'components/generate-button.js';
+        import 'components/concurrency-data.js';
+    </script>
+
+    <link rel="stylesheet" href="fonts/red-hat-font.min.css">
+
+    <title>Test thread concurrency</title>
+
+    <style>
+        /*:root {*/
+        /*    --main-bg-color: hsla(0, 0%, 100%, 0.7);*/
+        /*    --main-highlight-text-color: #e13245;*/
+        /*}*/
+
+        /*body {*/
+        /*    margin: 0;*/
+        /*    width: 100%;*/
+        /*    height: 100vh;*/
+        /*    font-family: 'Red Hat Text', sans-serif;*/
+        /*    overflow: hidden;*/
+        /*    display: flex;*/
+        /*    flex-direction: column;*/
+        /*    justify-content: center;*/
+        /*    color: var(--lumo-body-text-color);*/
+        /*    background: var(--main-bg-color);*/
+        /*}*/
+
+        .middle {
+            margin-top: 2em;
+            overflow: hidden;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            display: inline-block;
+        }
+
+        #page {
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 10px;
+        }
+
+        .secondary {
+            display: flex;
+            gap: 20px;
+            justify-content: space-around;
+        }
+
+        #generate-button {
+            gap: 20px;
+            display: block;
+            float: left;
+            text-align: center;
+        }
+
+        #concurrency-data {
+            margin-left: 100px;
+            display: block;
+            float: left;
+            text-align: left;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div>
+    <div id="generate-button">
+        <generate-button></generate-button>
+    </div>
+    <div id="concurrency-data">
+        <concurrency-data></concurrency-data>
+    </div>
+
+</div>
+
+</body>
+
+</html>
