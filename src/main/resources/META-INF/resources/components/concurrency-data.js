@@ -39,7 +39,23 @@ export class ConcurrencyData extends LitElement {
                 <p>Number of requests: ${this._requests}</p>
                 <p>Current concurrency: ${this._current}</p>
                 <p>Max concurrency: ${this._max}</p>
+            </div>
+            <div>
+                <vaadin-button
+                  arial-label="Reset"
+                  @click=${this._reset} class="button primary">
+                    Reset
+                </vaadin-button>
             </div>`;
+    }
+
+    _reset() {
+        fetch(`/generate/reset`, {
+            method: "GET",
+        });
+        this._requests = 0;
+        this._current = 0;
+        this._max = 0;
     }
 
     connectedCallback() {

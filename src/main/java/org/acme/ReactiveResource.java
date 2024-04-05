@@ -28,6 +28,7 @@ public class ReactiveResource {
         System.out.println("Calling example API on " + Thread.currentThread().getName());
 
         return exampleClient.reactiveGet()
-            .map(String::toUpperCase);
+            .map(String::toUpperCase)
+            .invoke(() -> concurrencyTracker.decAsync());
     }
 }

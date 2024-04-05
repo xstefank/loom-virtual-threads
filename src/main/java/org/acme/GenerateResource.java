@@ -8,6 +8,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.core.UriInfo;
+import org.acme.concurrency.ConcurrencyTracker;
 import org.jboss.resteasy.reactive.RestQuery;
 
 import java.net.URI;
@@ -19,6 +20,9 @@ public class GenerateResource {
 
     @Inject
     UriInfo uriInfo;
+
+    @Inject
+    ConcurrencyTracker concurrencyTracker;
 
     @VirtualThreads
     ExecutorService virtualThreadsExecutor;
@@ -37,5 +41,11 @@ public class GenerateResource {
         try (Client client = ClientBuilder.newClient()) {
             client.target(uri).request().get();
         }
+    }
+
+    @GET
+    @Path("/reset")
+    public void reset() {
+        concurrencyTracker.reset();
     }
 }
