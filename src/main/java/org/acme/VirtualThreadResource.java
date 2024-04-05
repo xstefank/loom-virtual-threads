@@ -24,7 +24,7 @@ public class VirtualThreadResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     @RunOnVirtualThread
-    public String hello() {
+    public String call() {
         concurrencyTracker.inc();
         try {
             System.out.println("Calling example API on " + Thread.currentThread().getName());

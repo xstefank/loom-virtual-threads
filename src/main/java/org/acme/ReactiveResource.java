@@ -23,7 +23,7 @@ public class ReactiveResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public Uni<String> hello() {
+    public Uni<String> call() {
         concurrencyTracker.incAsync();
         System.out.println("Calling example API on " + Thread.currentThread().getName());
 
