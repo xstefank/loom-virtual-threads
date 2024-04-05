@@ -1,5 +1,6 @@
 package org.acme;
 
+import io.smallrye.common.annotation.NonBlocking;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -31,4 +32,20 @@ public class ReactiveResource {
             .map(String::toUpperCase)
             .invoke(() -> concurrencyTracker.decAsync());
     }
+
+    @GET
+    @Path("/thread")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Uni<String> thread() {
+        return Uni.createFrom().item("Runnining on " + Thread.currentThread().getName());
+    }
+
+    @GET
+    @Path("/thread2")
+    @Produces(MediaType.TEXT_PLAIN)
+    @NonBlocking
+    public String thread2() {
+        return "Running on " + Thread.currentThread().getName();
+    }
+
 }

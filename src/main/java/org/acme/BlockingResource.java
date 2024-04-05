@@ -32,4 +32,11 @@ public class BlockingResource {
             concurrencyTracker.dec();
         }
     }
+
+    @GET
+    @Path("/thread")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String thread() {
+        return "Running on " + Thread.currentThread().getName();
+    }
 }

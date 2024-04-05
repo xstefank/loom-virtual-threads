@@ -34,4 +34,13 @@ public class VirtualThreadResource {
             concurrencyTracker.dec();
         }
     }
+
+    @GET
+    @Path("/thread")
+    @Produces(MediaType.TEXT_PLAIN)
+    @RunOnVirtualThread
+    public String thread() {
+        return "Running on " + Thread.currentThread().getName();
+    }
+
 }
