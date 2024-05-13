@@ -12,6 +12,8 @@ import org.acme.client.ExampleClient;
 import org.acme.concurrency.ConcurrencyTracker;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 @Path("/problem")
 @ApplicationScoped
 public class ProblemsResource {
@@ -46,6 +48,7 @@ public class ProblemsResource {
             System.out.println("Calling example API on " + Thread.currentThread().getName());
 
 //            pinTheCarrierThread();
+            pinTheCarrierThreadLock();
 
             return exampleClient.blockingGet().toUpperCase();
         } finally {
@@ -60,6 +63,19 @@ public class ProblemsResource {
             } catch (InterruptedException ignored) {
                 // For testing purpose only.
             }
+        }
+    }
+
+    private ReentrantLock lock = new ReentrantLock();
+
+    private void pinTheCarrierThreadLock() {
+        lock.lock();
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException ignored) {
+
+        } finally {
+            lock.unlock();
         }
     }
 }
