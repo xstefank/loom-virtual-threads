@@ -27,9 +27,29 @@ public class VirtualThreadResource {
     public String call() {
         concurrencyTracker.inc();
         try {
-            System.out.println("Calling example API on " + Thread.currentThread().getName());
+            System.out.println("Calling example API on " + Thread.currentThread());
 
             return exampleClient.blockingGet().toUpperCase();
+        } finally {
+            concurrencyTracker.dec();
+        }
+    }
+
+    @GET
+    @Path("/sleep")
+    @Produces(MediaType.TEXT_PLAIN)
+    @RunOnVirtualThread
+    public String callSleep() {
+        concurrencyTracker.inc();
+        try {
+            System.out.println("Calling example API on " + Thread.currentThread());
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "OK";
         } finally {
             concurrencyTracker.dec();
         }

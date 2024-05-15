@@ -34,6 +34,25 @@ public class BlockingResource {
     }
 
     @GET
+    @Path("/sleep")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String callSleep() {
+        concurrencyTracker.inc();
+        try {
+            System.out.println("Calling example API on " + Thread.currentThread().getName());
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "OK";
+        } finally {
+            concurrencyTracker.dec();
+        }
+    }
+
+    @GET
     @Path("/thread")
     @Produces(MediaType.TEXT_PLAIN)
     public String thread() {

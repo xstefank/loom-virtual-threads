@@ -34,6 +34,21 @@ public class ReactiveResource {
     }
 
     @GET
+    @Path("/sleep")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Uni<String> callSleep() {
+        concurrencyTracker.incAsync();
+        System.out.println("Calling example API on " + Thread.currentThread().getName());
+
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return Uni.createFrom().item("OK");
+    }
+
+    @GET
     @Path("/thread")
     @Produces(MediaType.TEXT_PLAIN)
     public Uni<String> thread() {

@@ -29,7 +29,7 @@ export class GenerateButton extends LitElement {
 
     constructor() {
         super();
-        this.count = 2000
+        this.count = 1000
         this.url = "/blocking"
     }
 
