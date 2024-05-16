@@ -12,6 +12,8 @@ import org.acme.client.ExampleClient;
 import org.acme.concurrency.ConcurrencyTracker;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
+import java.time.Duration;
+
 @Path("/reactive")
 @ApplicationScoped
 public class ReactiveResource {
@@ -38,14 +40,11 @@ public class ReactiveResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Uni<String> callSleep() {
         concurrencyTracker.incAsync();
-        System.out.println("Calling example API on " + Thread.currentThread().getName());
+        System.out.println("Calling sleep on " + Thread.currentThread().getName());
 
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return Uni.createFrom().item("OK");
+        return Uni.createFrom().item("OK")
+            .onItem().delayIt().by(Duration.ofMillis(10))
+            .invoke(() -> concurrencyTracker.decAsync());
     }
 
     @GET

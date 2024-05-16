@@ -39,7 +39,7 @@ public class BlockingResource {
     public String callSleep() {
         concurrencyTracker.inc();
         try {
-            System.out.println("Calling example API on " + Thread.currentThread().getName());
+            System.out.println("Calling sleep on " + Thread.currentThread().getName());
 
             try {
                 Thread.sleep(10);

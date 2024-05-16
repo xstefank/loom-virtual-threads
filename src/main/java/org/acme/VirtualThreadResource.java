@@ -42,7 +42,7 @@ public class VirtualThreadResource {
     public String callSleep() {
         concurrencyTracker.inc();
         try {
-            System.out.println("Calling example API on " + Thread.currentThread());
+            System.out.println("Calling sleep on " + Thread.currentThread());
 
             try {
                 Thread.sleep(10);
