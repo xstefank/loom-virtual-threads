@@ -47,7 +47,7 @@ public class ProblemsResource {
         try {
             System.out.println("Calling example API on " + Thread.currentThread().getName());
 
-//            pinTheCarrierThread();
+            pinTheCarrierThread();
 //            pinTheCarrierThreadLock();
 
             return exampleClient.blockingGet().toUpperCase();
