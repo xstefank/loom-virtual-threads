@@ -30,6 +30,11 @@ public class ReactiveResource {
         concurrencyTracker.incAsync();
         System.out.println("Calling example API on " + Thread.currentThread().getName());
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return exampleClient.reactiveGet()
             .map(String::toUpperCase)
             .invoke(() -> concurrencyTracker.decAsync());
