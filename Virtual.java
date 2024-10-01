@@ -1,5 +1,3 @@
-package org.acme;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -7,7 +5,6 @@ import java.util.Objects;
 public class Virtual {
 
     void main() throws Exception {
-
     }
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
